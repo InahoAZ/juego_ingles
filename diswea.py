@@ -14,7 +14,7 @@ class Poroncho(pilasengine.actores.Actor):
 class Pelirrojo(pilasengine.actores.Actor):
 
 	def iniciar(self):
-		self.animacion_detenida = pilas.imagenes.cargar_grilla("imagenes/personajes/pelirrojo/idle/frame-1.png", 1)
+		self.animacion_detenida = pilas.imagenes.cargar_grilla("imagenes/personajes/pelirrojo/idle/grilla.png", 2)
 		self.animacion_movimiento = pilas.imagenes.cargar_grilla("imagenes/personajes/pelirrojo/running/grilla.png", 6)
 	
 	def poner_en_movimiento(self):
@@ -26,6 +26,7 @@ class Pelirrojo(pilasengine.actores.Actor):
 
 	def actualizar(self):		
 		self.poner_en_reposo()
+		self.animacion_detenida.avanzar(velocidad = 1)
 		if pilas.control.izquierda:
 			self.animacion_movimiento.avanzar(velocidad = 15)
 			self.poner_en_movimiento()
@@ -59,9 +60,15 @@ class ObjetoAleatorio(pilasengine.actores.Actor):
 		nameimg = listimg[rnd]
 		self.imagen = "imagenes/"+nameimg+".png"
 		self.x = pilas.azar(-220, 220)
-		self.y = pilas.azar(-280, 280)
+		self.y = pilas.azar(-280, 280)        
 
-
+ 	def actualizar(self):
+ 		a = 0
+ 		xrand = pilas.azar(-200, 200)
+		xrand2 = pilas.azar(-200, 200)
+		yrand = pilas.azar(-200, 200)
+		yrand2 = pilas.azar(-200, 200)
+		self.x = [xrand, xrand2],2 
 
 fondo = pilas.fondos.Fondo()
 fondo.imagen = 'imagenes/fondos/tech.png'
